@@ -1,0 +1,24 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "building  a todo application using nodejs and mongodb as my database",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icodejsx/TodoApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icodejsx/TodoApp/issues"
+  },
+  "homepage": "https://github.com/icodejsx/TodoApp#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
