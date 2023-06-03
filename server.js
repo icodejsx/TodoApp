@@ -61,7 +61,7 @@ app.get('/', function (req, res) {
 })
 app.post('/create-item', function (req, res) {
     console.log(req.body.item)
-    res.send('thanks for submiting this form ')
+    res.send('Thanks for Submiting this form ')
     
 })
 
