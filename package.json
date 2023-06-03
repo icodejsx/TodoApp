@@ -4,6 +4,7 @@
   "description": "building  a todo application using nodejs and mongodb as my database",
   "main": "server.js",
   "scripts": {
+    "watch": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/icodejsx/TodoApp#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
   }
 }
