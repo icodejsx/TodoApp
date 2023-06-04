@@ -1,11 +1,24 @@
-let express = require('express')
+let express = require("express");
+let { MongoClient } = require("mongodb");
 
-let app = express()
+let app = express();
+let db;
 
-app.use(express.urlencoded({extended: false}))
+async function go() {
+  let client = new MongoClient(
+    "mongodb+srv://kene:Nweke081@cluster0.xc7hoie.mongodb.net/TodoApp?retryWrites=true&w=majority"
+  );
+  await client.connect();
+  db = client.db();
+  app.listen(5000);
+}
 
-app.get('/', function (req, res) {
-    res.send(`
+go();
+
+app.use(express.urlencoded({ extended: false }));
+
+app.get("/", function (req, res) {
+  res.send(`
     
     <!DOCTYPE html>
 <html>
@@ -57,12 +70,9 @@ app.get('/', function (req, res) {
 </body>
 </html>
     
-    `)
-})
-app.post('/create-item', function (req, res) {
-    console.log(req.body.item)
-    res.send('Thanks for Submitting this form ')
-    
-})
-
-app.listen(5000)
+    `);
+});
+app.post("/create-item", async function (req, res) {
+  await db.collection("items").insertOne({ text: req.body.items });
+  res.send("Thanks for Submitting this form ");
+});

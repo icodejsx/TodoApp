@@ -21,6 +21,7 @@
   "homepage": "https://github.com/icodejsx/TodoApp#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "mongodb": "^5.6.0",
     "nodemon": "^2.0.22"
   }
 }
