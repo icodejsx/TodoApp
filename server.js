@@ -6,7 +6,7 @@ let db;
 
 async function go() {
   let client = new MongoClient(
-    "mongodb+srv://kene:Nweke081@cluster0.xc7hoie.mongodb.net/TodoApp?retryWrites=true&w=majority"
+    "mongodb+srv://kene:nweke081@cluster0.xc7hoie.mongodb.net/TodoApp?retryWrites=true&w=majority"
   );
   await client.connect();
   db = client.db();
@@ -73,6 +73,7 @@ app.get("/", function (req, res) {
     `);
 });
 app.post("/create-item", async function (req, res) {
-  await db.collection("items").insertOne({ text: req.body.items });
+  await db.collection("items").insertOne({ text: req.body.item });
+  // console.log(req.body.item);
   res.send("Thanks for Submitting this form ");
 });
