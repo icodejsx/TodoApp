@@ -44,27 +44,22 @@ app.get("/", async function (req, res) {
     </div>
     
     <ul class="list-group pb-5">
-      <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-        <span class="item-text">Fake example item #1</span>
-        <div>
-          <button class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
-          <button class="delete-me btn btn-danger btn-sm">Delete</button>
-        </div>
-      </li>
-      <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-        <span class="item-text">Fake example item #2</span>
-        <div>
-          <button class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
-          <button class="delete-me btn btn-danger btn-sm">Delete</button>
-        </div>
-      </li>
-      <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
-        <span class="item-text">Fake example item #3</span>
-        <div>
-          <button class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
-          <button class="delete-me btn btn-danger btn-sm">Delete</button>
-        </div>
-      </li>
+   ${items
+     .map(function (item) {
+       return `
+       
+       <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+       <span class="item-text">${item.text}</span>
+       <div>
+         <button class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
+         <button class="delete-me btn btn-danger btn-sm">Delete</button>
+       </div>
+     </li>
+       
+       `;
+     })
+     .join("")}
+      
     </ul>
     
   </div>
@@ -77,5 +72,6 @@ app.get("/", async function (req, res) {
 app.post("/create-item", async function (req, res) {
   await db.collection("items").insertOne({ text: req.body.item });
   // console.log(req.body.item);
-  res.send("Thanks for Submitting this form ");
+  // res.send("Thanks for Submitting this form ");
+  res.redirect("/");
 });
