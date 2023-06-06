@@ -4,6 +4,8 @@ let { MongoClient } = require("mongodb");
 let app = express();
 let db;
 
+app.use(express.static(`public`));
+
 async function go() {
   let client = new MongoClient(
     "mongodb+srv://kene:nweke081@cluster0.xc7hoie.mongodb.net/TodoApp?retryWrites=true&w=majority"
