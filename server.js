@@ -63,6 +63,10 @@ app.get("/", async function (req, res) {
     </ul>
     
   </div>
+
+  <script src="/browser.js">
+ 
+  </script>
   
 </body>
 </html>
