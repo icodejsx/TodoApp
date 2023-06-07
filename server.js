@@ -17,6 +17,7 @@ async function go() {
 
 go();
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", async function (req, res) {
@@ -66,6 +67,8 @@ app.get("/", async function (req, res) {
     
   </div>
 
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <script src="/browser.js">
  
   </script>
@@ -80,4 +83,9 @@ app.post("/create-item", async function (req, res) {
   // console.log(req.body.item);
   // res.send("Thanks for Submitting this form ");
   res.redirect("/");
+});
+
+app.post("/update-item", function (req, res) {
+  console.log(req.body.text);
+  res.send("Success");
 });
