@@ -1,6 +1,9 @@
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("edit-me")) {
-    let userInput = prompt("Enter your desired new text");
+    let userInput = prompt(
+      "Enter your desired new text",
+      e.target.parentElement.parentElement.querySelector(".item-text").innerHTML
+    );
     axios
       .post("/update-item", {
         text: userInput,
