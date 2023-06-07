@@ -7,7 +7,9 @@ document.addEventListener("click", function (e) {
         id: e.target.getAttribute("data-id"),
       })
       .then(function () {
-        // do something interesting here in the next video
+        e.target.parentElement.parentElement.querySelector(
+          ".item-text"
+        ).innerHTML = userInput;
       })
       .catch(function () {
         console.log("please try again later");
