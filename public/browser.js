@@ -1,4 +1,7 @@
 document.addEventListener("click", function (e) {
+  // Delete features
+
+  //update features
   if (e.target.classList.contains("edit-me")) {
     let userInput = prompt(
       "Enter your desired new text",
