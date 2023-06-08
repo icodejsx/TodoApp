@@ -1,5 +1,7 @@
 document.addEventListener("click", function (e) {
   // Delete features
+  if (e.target.classList.contains("edit-me")) {
+  }
 
   //update features
   if (e.target.classList.contains("edit-me")) {
