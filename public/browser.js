@@ -1,6 +1,18 @@
 document.addEventListener("click", function (e) {
   // Delete features
-  if (e.target.classList.contains("edit-me")) {
+  if (e.target.classList.contains("delete-me")) {
+    if (confirm("Do you want to delete")) {
+      axios
+        .post("/delete-item", {
+          id: e.target.getAttribute("data-id"),
+        })
+        .then(function () {
+          e.target.parentElement.parentElement.remove();
+        })
+        .catch(function () {
+          console.log("please try again later");
+        });
+    }
   }
 
   //update features
