@@ -52,6 +52,16 @@ document.addEventListener("click", function (e) {
     }
   }
 
+  // INITIAL PAGE LOAD RENDER
+
+  let ourHTML = items
+    .map(function (item) {
+      return itemTemplate(item);
+    })
+    .join("");
+
+  document.getElementById("item-list").insertAdjacentHTML("beforeend", ourHTML);
+
   //update features
   if (e.target.classList.contains("edit-me")) {
     let userInput = prompt(
