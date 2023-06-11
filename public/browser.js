@@ -21,7 +21,7 @@ document.getElementById("create-form").addEventListener("submit", function (e) {
       text: createField.value,
     })
     .then(function (response) {
-      //    create the html for a new item
+      //    create the html for a new ite
       document
         .getElementById("item-list")
         .insertAdjacentHTML("beforeend", itemTemplate(response.data));
