@@ -1,5 +1,6 @@
 let express = require("express")
 let { MongoClient, ObjectId } = require("mongodb")
+let sanitizeHTML = require("sanitize-html")
 
 let app = express()
 let db
@@ -30,8 +31,9 @@ function passwordProtected(req, res, next) {
     res.status(401).send("Authentication Required")
   }
 }
+app.use(passwordProtected)
 
-app.get("/", passwordProtected, async function (req, res) {
+app.get("/", async function (req, res) {
   const items = await db.collection("items").find().toArray()
   res.send(`<!DOCTYPE html>
   <html>
@@ -70,12 +72,14 @@ app.get("/", passwordProtected, async function (req, res) {
 })
 
 app.post("/create-item", async function (req, res) {
-  const info = await db.collection("items").insertOne({ text: req.body.text })
-  res.json({ _id: info.insertedId, text: req.body.text })
+  let safeText = sanitizeHTML(req.body.text, { allowedTags: [], allowedAttributes: {} })
+  const info = await db.collection("items").insertOne({ text: safeText })
+  res.json({ _id: info.insertedId, text: safeText })
 })
 
 app.post("/update-item", async function (req, res) {
-  await db.collection("items").findOneAndUpdate({ _id: new ObjectId(req.body.id) }, { $set: { text: req.body.text } })
+  let safeText = sanitizeHTML(req.body.text, { allowedTags: [], allowedAttributes: {} })
+  await db.collection("items").findOneAndUpdate({ _id: new ObjectId(req.body.id) }, { $set: { text: safeText } })
   res.send("Success")
 })
 
