@@ -21,7 +21,17 @@ go()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.get("/", async function (req, res) {
+function passwordProtected(req, res, next) {
+  res.set('WWW-Authenticate', 'Basic realm=""simple Todo App')
+  console.log(req.headers.authorization)
+  if (req.headers.authorization == 'Basic bGVhcm46amF2YXNjcmlwdA==') {
+    next()
+  } else {
+    res.status(401).send("Authentication Required")
+  }
+}
+
+app.get("/", passwordProtected, async function (req, res) {
   const items = await db.collection("items").find().toArray()
   res.send(`<!DOCTYPE html>
   <html>
